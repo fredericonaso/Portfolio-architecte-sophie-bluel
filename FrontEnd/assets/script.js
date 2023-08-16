@@ -17,6 +17,7 @@ async function init(){
     }
     genProGal()
     createFilter()
+    FilterEvent()
    
     
 }
@@ -39,8 +40,8 @@ function genProGal(filtre = "0"){
     const fragment = document.createDocumentFragment()
     let selectedWorks = allWorks
 
-    if (filtre !== "0") {
-        //selectedWorks = [...allWorks].filter()
+    if (filtre != "0") {
+        selectedWorks = [...allWorks].filter(work => work.category === filtre);
     }
     for (const work of selectedWorks){
         // we build the <figure> frist
@@ -69,6 +70,17 @@ function createFilter(){
         filterContainer.appendChild(button);
     });
 
+
     return filterContainer;
 }
 
+function FilterEvent() {
+    const filterButtons = document.querySelectorAll(".filterBtn");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const categoryId = button.id;
+            genProGal(categoryId);
+        });
+    });
+}
