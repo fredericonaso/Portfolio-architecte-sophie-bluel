@@ -206,11 +206,15 @@ footer nav ul {
 	color: #1D6154;
 	text-align: center;
 	border-radius: 60px ;
+	border: 1px solid;
 	border-color: #1D6154;
 	background-color: white;
+	height: 37px;
+	min-width: 100px;
+	padding: 10px , 10px , 10px , 10px;
 }
 
-.filterBtn_slected{
+.filterBtn_selected{
 	background-color: #1D6154;
 	color: white;
 }
