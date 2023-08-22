@@ -5,8 +5,13 @@ const projectGal = document.querySelector(".gallery");
 const portfolio = document.querySelector("#portfolio");
 const filterContainer = document.querySelector("#filterBtnContainer");
 let login = document.querySelector('#login');
+const body = document.querySelector('body');
+const intro = document.querySelector('#introduction');
+const proTitle = document.querySelector('#projectTitle');
+const token = localStorage.getItem("token");
+const header = document.querySelector('header');
 
-async function init(){
+async function init() {
     const works = await fetchDatabaseData("works")
     for (const work of works) {
         allWorks.add(work)
@@ -16,22 +21,52 @@ async function init(){
         allCategories.add(categorie)
     }
     genProGal()
-    createFilter()
+    if (token) {
+        isConnected()
+    }
+    else {
+        createFilter()
+    }
 
 }
 init()
 
-function isConnected(){
+function isConnected() {
     login.textContent = "logout";
-    login.addEventListener("click", (e) =>{
-        e.preventDefault();
-        // suprimer le local storage et remettre le site en mode visiteur
-
-    });
 
     // creation de la barre noir en haut avec le mode edition 
+    const editor = document.createElement('div');
+    editor.classList.add('editor');
+    editor.innerHTML = `<div class="headmodifier"><i class="far fa-edit"></i>modifier</div>
+                            <button class="btnPubli">publier les changement</button>`
+    body.insertBefore(editor, header);
 
     // les button modifier pour la section intro et projet 
+    const modify1 = document.createElement('i');
+    modify1.classList.add('far', 'fa-edit'); 
+    modify1.textContent = 'modifier';
+   intro.appendChild(modify1)
+
+    // button to modify the project section 
+    const modify2 = document.createElement('i');
+    modify2.classList.add('far', 'fa-edit'); 
+    modify2.textContent = 'modifier';
+    const divTM = document.createElement('div');
+    divTM.classList.add("div")
+    portfolio.insertBefore(divTM, filterContainer );
+    divTM.appendChild(proTitle);
+    divTM.appendChild(modify2);
+
+    // click on logout
+    login.addEventListener("click", (e) => {
+        // suprimer le local storage et remettre le site en mode visiteur
+        login.textContent = "login";
+        token.remove
+        
+    });
+
+
+
 
 }
 
@@ -47,7 +82,7 @@ async function fetchDatabaseData(type) {
 
 
 // creation of the elements of the gallery 
-function genProGal(filtre = "0"){
+function genProGal(filtre = "0") {
     projectGal.innerHTML = ""
     const fragment = document.createDocumentFragment()
     let selectedWorks = allWorks
@@ -56,7 +91,7 @@ function genProGal(filtre = "0"){
         selectedWorks = [...allWorks].filter(work => work.categoryId == filtre);
         console.log(selectedWorks);
     }
-    for (const work of selectedWorks){
+    for (const work of selectedWorks) {
         // we build the <figure> frist
         const project = document.createElement('figure');
         project.innerHTML = `<img src="${work.imageUrl}" alt="${work.title}">
@@ -67,13 +102,13 @@ function genProGal(filtre = "0"){
     projectGal.appendChild(fragment)
 }
 
-function createFilter(){
+function createFilter() {
     const buttonAll = document.createElement("button")
     buttonAll.dataset.id = "0"
     buttonAll.textContent = "Tous"
     buttonAll.setAttribute("class", "filterBtn filterBtn_selected");
     filterContainer.appendChild(buttonAll)
-    
+
     for (const category of allCategories) {
         const button = document.createElement("button");
         button.dataset.id = category.id;
@@ -81,7 +116,7 @@ function createFilter(){
         button.setAttribute("class", "filterBtn");
         filterContainer.appendChild(button);
     }
-    
+
     FilterEvent()
 }
 
@@ -89,7 +124,7 @@ function FilterEvent() {
     const filterButtons = document.querySelectorAll(".filterBtn");
 
     filterButtons.forEach(button => {
-        button.addEventListener("click", function(e) {
+        button.addEventListener("click", function (e) {
             const clickedButton = e.target
             const categoryId = clickedButton.dataset.id;
             //retiré selected de l'ancien et le mettre sur le nouveau
