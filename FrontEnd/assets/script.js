@@ -32,7 +32,8 @@ async function init() {
 init()
 
 function isConnected() {
-    login.textContent = "logout";
+    const logButton = document.querySelector("#log")
+    logButton.textContent = "logout"
 
     // creation de la barre noir en haut avec le mode edition 
     const editor = document.createElement('div');
@@ -41,13 +42,13 @@ function isConnected() {
                             <button class="btnPubli">publier les changement</button>`
     body.insertBefore(editor, header);
 
-    // les button modifier pour la section intro et projet 
+    // les button modifier pour la section intro et projet => mettre dans le html en hidden
     const modify1 = document.createElement('i');
     modify1.classList.add('far', 'fa-edit'); 
     modify1.textContent = 'modifier';
    intro.appendChild(modify1)
 
-    // button to modify the project section 
+    // button to modify the project section => mettre dans le html en hidden
     const modify2 = document.createElement('i');
     modify2.classList.add('far', 'fa-edit'); 
     modify2.textContent = 'modifier';
@@ -58,10 +59,11 @@ function isConnected() {
     divTM.appendChild(modify2);
 
     // click on logout
-    login.addEventListener("click", (e) => {
+    logButton.addEventListener("click", (e) => {
+        e.preventDefault()
         // suprimer le local storage et remettre le site en mode visiteur
-        login.textContent = "login";
-        token.remove
+        localStorage.clear()
+        document.location.reload()
         
     });
 

@@ -239,6 +239,10 @@ margin: auto;
 	flex-direction: column;
 }
 
+.hidden{
+	display:none
+}
+
 #login input {
 	height: 50px;
 	font-size: 1.2em;
