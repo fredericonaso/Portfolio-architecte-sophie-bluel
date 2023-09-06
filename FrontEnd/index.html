@@ -9,12 +9,57 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="./assets/script.js" defer></script>
 </head>
 
 <body>
+	<div class="hidden modal" id="modal">
+		<div class="modalGes">
+			<div class="modalGes-container">
+				<div class="Xmark">
+					<i class="fas fa-xmark"></i>
+				</div>
+				<h2>Galerie Photos</h2>
+				<div id="galerieMini">
+				</div>
+				<div class="line"></div>
+				<button id="AjoutP" class="filterBtn filterBtn_selected width">Ajouter une photo</button>
+				<span style="color:red;">Supprimer la Galerie</span>
+			</div>
+		</div>
+		<div class="modalAjout hidden">
+			<div class="modalAjout-container">
+				<div class="ArrowXmark">
+					<i class="fas fa-arrow-left"></i>
+					<i class="fas fa-xmark"></i>
+				</div>
+				<h2>Ajout Photo</h2>
+				<div class="cadreBleu">
+					<img src="" alt="">
+					<button class="filterBtn filterBtn_selected width">+ Ajouter photo</button>
+					<span>jpg. png : 4mo max</span>
+				</div>
+				<div class="photoName">
+					<label for="name">Titre</label>
+					<input type="text">
+					<label for="id">Catégorie</label>
+					<input type="select">
+				</div>
+				<div class="line"></div>
+				<button class="filterBtn filterBtn_selected width">valider</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="editor">
+		<div class="headmodifier"><i class="far fa-edit"></i>modifier</div>
+		<button class="btnPubli">publier les changement</button>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 		<nav>
@@ -28,8 +73,9 @@
 	</header>
 	<main>
 		<section id="introduction">
-			<figure>
+			<figure id="photoprofile">
 				<img src="./assets/images/sophie-bluel.png" alt="">
+				<div class="intro"><i class="far fa-edit "></i><button class="modifier">modifier</button></div>
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -43,11 +89,15 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2 id="projectTitle">Mes Projets</h2>
+			<div class="div">
+				<h2 id="projectTitle">Mes Projets</h2>
+				<div class="modiferProj"><i class="far fa-edit protmodifier"></i><button
+						class="modifier">modifier</button></div>
+			</div>
 			<div id="filterBtnContainer">
 
 			</div>
-			
+
 			<div class="gallery">
 			</div>
 		</section>
@@ -73,6 +123,7 @@
 			</ul>
 		</nav>
 	</footer>
+
 </body>
 
 </html>

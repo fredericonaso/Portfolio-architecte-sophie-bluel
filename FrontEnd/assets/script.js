@@ -10,6 +10,10 @@ const intro = document.querySelector('#introduction');
 const proTitle = document.querySelector('#projectTitle');
 const token = localStorage.getItem("token");
 const header = document.querySelector('header');
+const modal = document.querySelector('#modal');
+const BtnAjout = document.querySelector("#AjoutP");
+const modalGes = document.querySelector('.modalGes');
+const modalAjout = document.querySelector('.modalAjout');
 
 async function init() {
     const works = await fetchDatabaseData("works")
@@ -35,35 +39,31 @@ function isConnected() {
     const logButton = document.querySelector("#log")
     logButton.textContent = "logout"
 
-    // creation de la barre noir en haut avec le mode edition 
-    const editor = document.createElement('div');
-    editor.classList.add('editor');
-    editor.innerHTML = `<div class="headmodifier"><i class="far fa-edit"></i>modifier</div>
-                            <button class="btnPubli">publier les changement</button>`
-    body.insertBefore(editor, header);
+    const editor = document.querySelector(".editor");
+    editor.style.display = "flex";
 
     // les button modifier pour la section intro et projet => mettre dans le html en hidden
-    const modify1 = document.createElement('i');
-    modify1.classList.add('far', 'fa-edit'); 
-    modify1.textContent = 'modifier';
-   intro.appendChild(modify1)
+    const modifyIntro = document.querySelector(".intro")
+    modifyIntro.style.display = "block";
 
     // button to modify the project section => mettre dans le html en hidden
-    const modify2 = document.createElement('i');
-    modify2.classList.add('far', 'fa-edit'); 
-    modify2.textContent = 'modifier';
-    const divTM = document.createElement('div');
-    divTM.classList.add("div")
-    portfolio.insertBefore(divTM, filterContainer );
-    divTM.appendChild(proTitle);
-    divTM.appendChild(modify2);
+    const modifyProject = document.querySelector(".modiferProj")
+    modifyProject.style.display = "block";
 
+   modifyProject.onclick = function (){
+    modal.style.display = 'block';
+   }
+
+   BtnAjout.onclick = function(){
+    modalGes.style.display = "none";
+    modalAjout.classList.remove ("hidden");
+   }
     // click on logout
     logButton.addEventListener("click", (e) => {
         e.preventDefault()
         // suprimer le local storage et remettre le site en mode visiteur
         localStorage.clear()
-        document.location.reload()
+        window.location.reload()
         
     });
 
@@ -81,8 +81,6 @@ async function fetchDatabaseData(type) {
         console.error('Erreur lors de la récupération des données depuis l\'API:', error);
     }
 }
-
-
 // creation of the elements of the gallery 
 function genProGal(filtre = "0") {
     projectGal.innerHTML = ""

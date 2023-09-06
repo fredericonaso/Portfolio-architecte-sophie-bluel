@@ -3,19 +3,87 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -23,46 +91,68 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /** end reset css**/
 body {
 	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
+	margin: auto;
+	font-family: 'Work Sans';
 	font-size: 14px;
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
+
 section {
 	margin: 50px 0
 }
 
-h1{
+h1 {
 	display: flex;
 	flex-direction: column;
 	font-family: 'Syne';
@@ -71,31 +161,33 @@ h1{
 	color: #B1663C
 }
 
-h1 > span {
+h1>span {
 	font-family: 'Work Sans';
-	font-size:10px;
+	font-size: 10px;
 	letter-spacing: 0.1em;
-;
+	;
 }
 
-h2{
+h2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
 	color: #1D6154
 }
+
 nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
 
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
 
-nav li a{
+nav li a {
 	text-decoration: none;
 	color: black;
 }
@@ -103,13 +195,16 @@ nav li a{
 li a:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
 }
+
 #introduction figure {
 	flex: 1
 }
+
 #introduction img {
 	display: block;
 	margin: auto;
@@ -119,6 +214,7 @@ li a:hover {
 #introduction article {
 	flex: 1
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -126,10 +222,12 @@ li a:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -142,20 +240,24 @@ li a:hover {
 	width: 100%;
 
 }
+
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#contact > * {
+
+#contact>* {
 	text-align: center;
 
 }
-#contact h2{
+
+#contact h2 {
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
@@ -166,23 +268,25 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin : 2em auto ;
+	margin: 2em auto;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 
 footer nav ul {
@@ -192,7 +296,7 @@ footer nav ul {
 }
 
 
-#filterBtnContainer{
+#filterBtnContainer {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
@@ -200,21 +304,22 @@ footer nav ul {
 	gap: 10px;
 	padding-bottom: 30px;
 }
+
 .filterBtn {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: #1D6154;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 	border: 1px solid;
 	border-color: #1D6154;
 	background-color: white;
 	height: 37px;
 	min-width: 100px;
-	padding: 10px , 10px , 10px , 10px;
+	padding: 10px, 10px, 10px, 10px;
 }
 
-.filterBtn_selected{
+.filterBtn_selected {
 	background-color: #1D6154;
 	color: white;
 }
@@ -223,24 +328,27 @@ footer nav ul {
 
 #login {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#login > * {
+
+#login>* {
 	text-align: center;
 
 }
-#login h2{
+
+#login h2 {
 	margin-bottom: 20px;
 }
+
 #login form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
 
-.hidden{
-	display:none
+.hidden {
+	display: none
 }
 
 #login input {
@@ -249,31 +357,34 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #login label {
 	margin: 2em 0 1em 0;
 }
+
 #login textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#passwordretrive{
+#passwordretrive {
 	display: flex;
 	justify-content: center;
 	color: black;
 }
 
-.editor{
+.editor {
 	width: 100%;
 	height: 59px;
 	background-color: black;
-	display: flex;
+	display: none;
 	flex-flow: row nowrap;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
 }
-.btnPubli{
+
+.btnPubli {
 	border-radius: 60px;
 	background: #FFF;
 	width: 216px;
@@ -284,16 +395,186 @@ margin: auto;
 	text-align: center;
 	justify-content: center;
 }
-.headmodifier{
-color: #FFF;
-display: flex;
-justify-content: center;
+
+.headmodifier {
+	color: #FFF;
+	display: flex;
+	justify-content: center;
 }
 
-.div{
+.div {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
-    align-items: baseline;
-    gap: 30px;
+	align-items: baseline;
+	gap: 30px;
+}
+
+#photoprofile {
+	display: flex;
+	flex-flow: column nowrap;
+
+}
+
+.intro {
+	padding-left: 55px;
+	display: none;
+
+}
+
+.modiferProj {
+	display: none;
+}
+
+.modifier {
+	background-color: white;
+	border: none
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	/* Enable scroll if needed */
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal h2 {
+	color: #000;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.line {
+	width: 100%;
+	height: 1px;
+	background-color: #b3b3b3;
+}
+
+.modalGes {
+	gap: 20px;
+	width: 630px;
+	height: 670px;
+}
+
+.modalGes-container {
+	background-color: #FFF;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+	background-color: #fefefe;
+	margin: 50%;
+	/* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 75%;
+	/* Could be more or less, depending on screen size */
+	gap: 20px;
+}
+
+.width {
+	width: 30%;
+}
+
+.modalAjout {
+	gap: 20px;
+	width: 630px;
+	height: 670px;
+}
+
+.ArrowXmark {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.ArrowXmark i {
+	width: 21px;
+	height: 21px;
+}
+
+.Xmark {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.Xmark i {
+	width: 21px;
+	height: 21px;
+}
+
+.modalAjout-container {
+	background-color: #FFF;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+	background-color: #fefefe;
+	margin: 50%;
+	/* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 75%;
+	/* Could be more or less, depending on screen size */
+	gap: 20px;
+}
+
+.cadreBleu {
+	width: 420px;
+	height: 169px;
+	background-color: #e8f1f6;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.cadreBleu button {
+	background-color: #CBD6DC;
+	color: #306685;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.photoName {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 90%;
+	gap: 20px;
+}
+
+.photoName input {
+	width: 100%;
+	height: 51px;
+	background: #FFF;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+.photoName label {
+	color: #3D3D3D;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
 }
