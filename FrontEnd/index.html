@@ -22,34 +22,42 @@
 		<div class="modalGes">
 			<div class="modalGes-container">
 				<div class="Xmark">
-					<i class="fas fa-xmark"></i>
+					<span class="close">&times;</span>
 				</div>
 				<h2>Galerie Photos</h2>
 				<div id="galerieMini">
 				</div>
 				<div class="line"></div>
 				<button id="AjoutP" class="filterBtn filterBtn_selected width">Ajouter une photo</button>
-				<span style="color:red;">Supprimer la Galerie</span>
+				<span style="color:red;">Supprimer la galerie</span>
 			</div>
 		</div>
 		<div class="modalAjout hidden">
 			<div class="modalAjout-container">
 				<div class="ArrowXmark">
-					<i class="fas fa-arrow-left"></i>
-					<i class="fas fa-xmark"></i>
+					<i class="fas fa-arrow-left" id="back"></i>
+					<span class="close">&times;</span>
 				</div>
 				<h2>Ajout Photo</h2>
-				<div class="cadreBleu">
-					<img src="" alt="">
-					<button class="filterBtn filterBtn_selected width">+ Ajouter photo</button>
-					<span>jpg. png : 4mo max</span>
-				</div>
-				<div class="photoName">
-					<label for="name">Titre</label>
-					<input type="text">
-					<label for="id">Catégorie</label>
-					<input type="select">
-				</div>
+				<form method="post">
+					<div class="cadreBleu">
+						<input type="file" name="picture"
+								required><i class="far fa-image"></i>
+						<button type="submit" class="filterBtn filterBtn_selected width">+ Ajouter photo</button>
+						<span>jpg. png : 4mo max</span>
+					</div>
+					<div class="photoName">
+						<label for="name">Titre</label>
+						<input type="text" id="titre" name="titre" required>
+						<label for="id">Catégorie</label>
+						<select id="categorie" name="categorie">
+							<option value=""></option>
+							<option value="1">Objets</option>
+							<option value="2">Appartements</option>
+							<option value="3">Hôtel & Restaurants</option>
+						</select>
+					</div>
+				</form>
 				<div class="line"></div>
 				<button class="filterBtn filterBtn_selected width">valider</button>
 			</div>
