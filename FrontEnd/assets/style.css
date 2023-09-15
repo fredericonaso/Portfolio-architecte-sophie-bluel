@@ -225,7 +225,7 @@ li a:hover {
 
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	
 }
 
 .gallery {
@@ -278,7 +278,7 @@ li a:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"] {
+#contact input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -384,30 +384,21 @@ footer nav ul {
 	gap: 10px;
 }
 
-.btnPubli {
-	border-radius: 60px;
-	background: #FFF;
-	width: 216px;
-	height: 38px;
-	color: black;
-	display: flex;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-}
 
 .headmodifier {
 	color: #FFF;
 	display: flex;
 	justify-content: center;
+	gap: 10px;
 }
 
 .div {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
-	align-items: baseline;
+	align-items: center;
 	gap: 30px;
+	margin-bottom: 30px;
 }
 
 #photoprofile {
@@ -416,19 +407,23 @@ footer nav ul {
 
 }
 
-.intro {
-	padding-left: 55px;
-	display: none;
-
-}
 
 .modiferProj {
 	display: none;
+	
+	
 }
 
 .modifier {
-	background-color: white;
-	border: none
+	color: #000;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin-left: 10px;
+	cursor: pointer;
 }
 
 .modal {
@@ -456,7 +451,7 @@ footer nav ul {
 }
 
 .line {
-	width: 80%;
+	width: 100%;
 	height: 1px;
 	background-color: #b3b3b3;
 	margin-top: 20px;
@@ -526,18 +521,7 @@ footer nav ul {
     border: none;
 	align-items: center;
 }
-.move{
-    display: flex;
-    width: 17px;
-	height: 17px;
-    position: absolute;
-    top: 6px;
-    left: 60px;
-    justify-content: center;
-    background: black;
-    border: none;
-	align-items: center;
-}
+
 
 .modalGes-container {
 	background-color: #FFF;
@@ -564,31 +548,33 @@ footer nav ul {
 	align-items: center;
 	height: 100vh;
 	border: radius 10px;
+	gap: 30px;
 }
 
 .ArrowXmark {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	width: 100%;
+	width: 80%;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 .ArrowXmark i {
 	width: 21px;
 	height: 21px;
+	font-size: 21px;
+	font-weight: 700;
 }
 
 .Xmark {
 	display: flex;
-	width: 100%;
+	width: 90%;
 	align-items: center;
 	justify-content: flex-end;
 }
 
-.Xmark i {
-	width: 21px;
-	height: 21px;
-}
+
 
 .modalAjout-container {
 	background-color: #FFF;
@@ -599,6 +585,7 @@ footer nav ul {
 	width:50%;
 	height: 70%;
 	overflow-y:auto;
+	border-radius: 10px;
 	
 }
 
@@ -610,6 +597,8 @@ footer nav ul {
 	align-items: center;
 	flex-direction: column;
 	justify-content: space-evenly;
+	margin-bottom: 30px;
+	margin-top: 20px;
 }
 
 .cadreBleu i{
@@ -617,7 +606,7 @@ footer nav ul {
 	color: #B9C5CC;
 }
 
-.cadreBleu button {
+.cadreBleu label {
 	background-color: #CBD6DC;
 	color: #306685;
 	text-align: center;
@@ -634,22 +623,29 @@ footer nav ul {
 	flex-direction: column;
 	justify-content: flex-start;
 	width: 90%;
-	gap: 20px;
 }
 
 .photoName input {
 	width: 100%;
 	height: 51px;
 	background: #FFF;
-	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	box-shadow: -6px 5px 11px -2px rgba(0,0,0,0.5);
+	border: 1px solid white;
+	margin-top: 10px;
+	margin-bottom: 30px;
 }
+
 
 .photoName select {
 	width: 100%;
 	height: 51px;
 	background: #FFF;
-	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	box-shadow: -6px 5px 11px -2px rgba(0,0,0,0.5);
+	border: 1px solid white;
+	margin-top: 10px;
+	margin-bottom: 30px;
 }
+
 
 .photoName label {
 	color: #3D3D3D;
@@ -658,4 +654,39 @@ footer nav ul {
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
+}
+
+.UploadBtn input[type="file"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.UploadBtn{
+color: #306685;
+background-color: #CBD6DC;
+text-align: center;
+border-radius: 50px;
+height: 36px;
+width: 173px;
+margin: 0;
+}
+
+.validateUp{
+	font-family: 'Syne';
+    font-weight: 700;
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+	background-color: #a7a7a7;
+	color: #FFFFFF;
+	border: none;
+	height: 36px;
+	width: 237px;
+	
 }

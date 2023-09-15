@@ -16,7 +16,7 @@ const BtnModalAjout = document.querySelector("#AjoutP");
 const modalGes = document.querySelector('.modalGes');
 const modalAjout = document.querySelector('.modalAjout');
 const backModalArrow = document.querySelectorAll('#back');
-const closeModalBtn = document.querySelector('.close');
+const closeModalBtn = document.querySelectorAll('.close');
 const modalGalery = document.querySelector('#galerieMini');
 
 async function init() {
@@ -46,34 +46,35 @@ function isConnected() {
     const editor = document.querySelector(".editor");
     editor.style.display = "flex";
 
-    // les button modifier pour la section intro et projet => mettre dans le html en hidden
-    const modifyIntro = document.querySelector(".intro")
-    modifyIntro.style.display = "block";
 
     // button to modify the project section => mettre dans le html en hidden
     const modifyProject = document.querySelector(".modiferProj")
     modifyProject.style.display = "block";
 
-   modifyProject.onclick = function (){
-    modal.style.display = 'block';
-    ModalGal()
-   }
-
-   BtnModalAjout.onclick = function(){
-    modalGes.style.display = "none";
-    modalAjout.style.display = "flex";
-   }
-
-   closeModalBtn.onclick = function() {
-    modal.style.display = "none";
-  }
-
-   window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-      
+    modifyProject.onclick = function () {
+        modal.style.display = 'block';
     }
-  }
+
+    BtnModalAjout.onclick = function () {
+        modalGes.style.display = "none";
+        modalAjout.style.display = "flex";
+    }
+
+    closeModalBtn.onclick = function () {
+        modal.style.display = "none";
+        modalAjout.style.display = "none";
+    }
+
+    backModalArrow.onclick = function () {
+        modalAjout.style.display = 'none';
+        modalGes.style.display = 'flex';
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
     // click on logout
     logButton.addEventListener("click", (e) => {
@@ -81,12 +82,10 @@ function isConnected() {
         // suprimer le local storage et remettre le site en mode visiteur
         localStorage.clear()
         window.location.reload()
-        
+
     });
-
-
-
-
+    ModalGal()
+    modalUploadPic()
 }
 
 /*
@@ -157,6 +156,7 @@ function FilterEvent() {
             const clickedButton = e.target
             const categoryId = clickedButton.dataset.id;
             //retiré selected de l'ancien et le mettre sur le nouveau
+
             filterButtons.forEach(btn => {
                 btn.classList.remove('filterBtn_selected');
             });
@@ -173,19 +173,101 @@ function FilterEvent() {
 
 
 /*function gallerie dans la modale*/
-function ModalGal(){
-    ModalGal.innerHTML = ""
+function ModalGal() {
+    modalGalery.innerHTML = ""
     const modalFragment = document.createDocumentFragment()
-    let selectedWorks = allWorks
-    for (const work of selectedWorks) {
+    for (const work of allWorks) {
         // we build the <figure> frist
         const project = document.createElement('figure');
         project.innerHTML = `<img src="${work.imageUrl}" alt="${work.title}">
-                            <button class="btnDelete"><i class="fas fa-trash-can"></i></button>
-                            <figcaption>éditer</figcaption>`
+                            <i class="fas fa-trash-can btnDelete" data-id="${work.id}"></i>`
         //now we appenchild the figure to the modal gallery div
         modalFragment.appendChild(project);
     }
     modalGalery.appendChild(modalFragment);
+
+    modalEvents()
+
 }
 /*function pour la suppression depuis la modal */
+
+
+function modalEvents() {
+    const modalDelBtns = document.querySelectorAll(".btnDelete");
+
+    modalDelBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
+            const deletedID = btn.dataset.id;
+
+            fetch(`http://localhost:5678/api/works/${deletedID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors de la suppression de la ressource');
+                    }
+
+                    for (const work of allWorks) {
+                        if (work.id == deletedID) {
+                            allWorks.remove(work);
+                            break;
+                        }
+                    }
+                    console.log('Ressource supprimée avec succès');
+                    ModalGal();
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la suppression:', error);
+                });
+        });
+    });
+}
+
+function modalUploadPic() {
+    document.querySelector('#uploadForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const pictureInput = document.getElementById('picture');
+        const imagePreview = document.getElementById('imagePreview');
+
+        pictureInput.addEventListener('change', function () {
+            const file = pictureInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+            }
+        });
+
+        const formData = new FormData(this);
+
+        fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'envoi du formulaire');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Formulaire envoyé avec succès:', data);
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'envoi du formulaire:', error);
+            });
+    });
+}

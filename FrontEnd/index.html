@@ -29,7 +29,6 @@
 				</div>
 				<div class="line"></div>
 				<button id="AjoutP" class="filterBtn filterBtn_selected width">Ajouter une photo</button>
-				<span style="color:red;">Supprimer la galerie</span>
 			</div>
 		</div>
 		<div class="modalAjout hidden">
@@ -39,34 +38,38 @@
 					<span class="close">&times;</span>
 				</div>
 				<h2>Ajout Photo</h2>
-				<form method="post">
+				<form id="uploadForm" enctype="multipart/form-data">
 					<div class="cadreBleu">
-						<input type="file" name="picture"
-								required><i class="far fa-image"></i>
-						<button type="submit" class="filterBtn filterBtn_selected width">+ Ajouter photo</button>
-						<span>jpg. png : 4mo max</span>
+						<i class="far fa-image"></i>
+						<label for="picture" class=" UploadBtn">
+							<input type="file" name="picture" id="picture" accept=".jpg, .png" required>
+							+ Ajouter photo
+						</label>
+						<span>jpg, png : 4 Mo max</span>
+						<img id="imagePreview" src="" alt="Aperçu de l'image" style="display: none;">
 					</div>
 					<div class="photoName">
-						<label for="name">Titre</label>
+						<label for="titre">Titre</label>
 						<input type="text" id="titre" name="titre" required>
-						<label for="id">Catégorie</label>
-						<select id="categorie" name="categorie">
-							<option value=""></option>
+						<label for="categorie">Catégorie</label>
+						<select id="categorie" name="categorie" required>
+							<option value="0"></option>
 							<option value="1">Objets</option>
 							<option value="2">Appartements</option>
 							<option value="3">Hôtel & Restaurants</option>
 						</select>
 					</div>
+					<div class="line"></div>
+					<input type="submit" value="Ajouter photo" class="validateUp">
 				</form>
-				<div class="line"></div>
-				<button class="filterBtn filterBtn_selected width">valider</button>
+				
+				
 			</div>
 		</div>
 	</div>
 
 	<div class="editor">
-		<div class="headmodifier"><i class="far fa-edit"></i>modifier</div>
-		<button class="btnPubli">publier les changement</button>
+		<div class="headmodifier"><i class="far fa-edit"></i>Mode édition</div>
 	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
@@ -83,7 +86,6 @@
 		<section id="introduction">
 			<figure id="photoprofile">
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<div class="intro"><i class="far fa-edit "></i><button class="modifier">modifier</button></div>
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -99,8 +101,8 @@
 		<section id="portfolio">
 			<div class="div">
 				<h2 id="projectTitle">Mes Projets</h2>
-				<div class="modiferProj"><i class="far fa-edit protmodifier"></i><button
-						class="modifier">modifier</button></div>
+				<div class="modiferProj"><i class="far fa-edit protmodifier"><span class="modifier">modifier</span></i>
+						</div>
 			</div>
 			<div id="filterBtnContainer">
 
