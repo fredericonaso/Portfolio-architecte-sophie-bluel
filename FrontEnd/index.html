@@ -18,24 +18,29 @@
 </head>
 
 <body>
-	<div class="hidden modal" id="modal">
-		<div class="modalGes">
-			<div class="modalGes-container">
+
+	<aside class="modal" id="modal" style="display: none;" aria-hidden="true" role="dialog" aria-modal="false">
+		<div class="modalGes ">
+			<div class="modalGes-container js-stop">
 				<div class="Xmark">
-					<span class="close">&times;</span>
+					<span class="close js-modal-close">&times;</span>
 				</div>
 				<h2>Galerie Photos</h2>
 				<div id="galerieMini">
 				</div>
-				<div class="line"></div>
-				<button id="AjoutP" class="filterBtn filterBtn_selected width">Ajouter une photo</button>
+				<div class="line customWidth"></div>
+				<button id="AjoutP"  class="filterBtn filterBtn_selected width"><a href="#modal2">Ajouter une photo</a></button>
 			</div>
 		</div>
-		<div class="modalAjout hidden">
-			<div class="modalAjout-container">
+	</aside>
+
+	
+	<aside class="modal" id="modal2" style="display: none;" aria-hidden="true" role="dialog" aria-modal="false">
+		<div class="modalAjout" id="modal">
+			<div class="modalAjout-container js-stop">
 				<div class="ArrowXmark">
 					<i class="fas fa-arrow-left" id="back"></i>
-					<span class="close">&times;</span>
+					<span class="close js-modal-close">&times;</span>
 				</div>
 				<h2>Ajout Photo</h2>
 				<form id="uploadForm" enctype="multipart/form-data">
@@ -62,11 +67,9 @@
 					<div class="line"></div>
 					<input type="submit" value="Ajouter photo" class="validateUp">
 				</form>
-				
-				
 			</div>
 		</div>
-	</div>
+	</aside>
 
 	<div class="editor">
 		<div class="headmodifier"><i class="far fa-edit"></i>Mode édition</div>
@@ -101,7 +104,7 @@
 		<section id="portfolio">
 			<div class="div">
 				<h2 id="projectTitle">Mes Projets</h2>
-				<div class="modiferProj"><i class="far fa-edit protmodifier"><span class="modifier">modifier</span></i>
+				<div class="modiferProj"><i class="far fa-edit protmodifier"><a href="#modal" class="modifier js-modal">modifier</a></i>
 						</div>
 			</div>
 			<div id="filterBtnContainer">

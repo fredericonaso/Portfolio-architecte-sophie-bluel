@@ -1,5 +1,6 @@
 const allWorks = new Set()
 const allCategories = new Set()
+const actualModal = null
 
 
 const projectGal = document.querySelector(".gallery");
@@ -7,11 +8,8 @@ const portfolio = document.querySelector("#portfolio");
 const filterContainer = document.querySelector("#filterBtnContainer");
 let login = document.querySelector('#login');
 const body = document.querySelector('body');
-const intro = document.querySelector('#introduction');
 const proTitle = document.querySelector('#projectTitle');
 const token = localStorage.getItem("token");
-const header = document.querySelector('header');
-const modal = document.querySelector('#modal');
 const BtnModalAjout = document.querySelector("#AjoutP");
 const modalGes = document.querySelector('.modalGes');
 const modalAjout = document.querySelector('.modalAjout');
@@ -51,30 +49,11 @@ function isConnected() {
     const modifyProject = document.querySelector(".modiferProj")
     modifyProject.style.display = "block";
 
-    modifyProject.onclick = function () {
-        modal.style.display = 'block';
-    }
+    document.querySelectorAll('.js-modal').forEach(a => {
+        a.addEventListener('click', openModal)
+    })
 
-    BtnModalAjout.onclick = function () {
-        modalGes.style.display = "none";
-        modalAjout.style.display = "flex";
-    }
 
-    closeModalBtn.onclick = function () {
-        modal.style.display = "none";
-        modalAjout.style.display = "none";
-    }
-
-    backModalArrow.onclick = function () {
-        modalAjout.style.display = 'none';
-        modalGes.style.display = 'flex';
-    }
-
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 
     // click on logout
     logButton.addEventListener("click", (e) => {
@@ -196,34 +175,41 @@ function modalEvents() {
     const modalDelBtns = document.querySelectorAll(".btnDelete");
 
     modalDelBtns.forEach(btn => {
-        btn.addEventListener("click", function () {
+        btn.addEventListener("click", async function () {
             const deletedID = btn.dataset.id;
 
-            fetch(`http://localhost:5678/api/works/${deletedID}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erreur lors de la suppression de la ressource');
-                    }
+            const tryDelete = await deleteWork(deletedID)
 
-                    for (const work of allWorks) {
-                        if (work.id == deletedID) {
-                            allWorks.remove(work);
-                            break;
-                        }
+            if (tryDelete) {
+                for (const work of allWorks) {
+                    if (work.id == deletedID) {
+                        allWorks.delete(work);
+                        break;
                     }
-                    console.log('Ressource supprimée avec succès');
-                    ModalGal();
-                })
-                .catch(error => {
-                    console.error('Erreur lors de la suppression:', error);
-                });
+                }
+                console.log('Ressource supprimée avec succès');
+                ModalGal();
+                genProGal();
+            } else {
+                throw new Error('Erreur lors de la suppression de la ressource');
+            }
         });
     });
+}
+
+async function deleteWork(id) {
+    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "authorization": "bearer " + token
+        },
+    })
+    if (response.ok) {
+        return true
+    } else {
+        console.log(response);
+        return false
+    }
 }
 
 function modalUploadPic() {
@@ -270,4 +256,49 @@ function modalUploadPic() {
                 console.error('Erreur lors de l\'envoi du formulaire:', error);
             });
     });
+}
+
+const openModal = function (e) {
+    e.preventDefault();
+    const target = document.querySelector(e.target.getAttribute('href'));
+    target.style.display = null
+    target.removeAttribute('aria-hidden')
+    target.setAttribute('aria-modal', true)
+    modal = target
+    modal.addEventListener('click', closeModal);
+    modal.querySelector('.js-modal-close').addEventListener('click', closeModal);
+    modal.querySelector('.js-stop').addEventListener('click', stopPropagation);
+    BtnModalAjout.addEventListener('click', openModalAjout);
+    
+}
+
+const openModalAjout = function () {
+    const target2 = document.querySelector('#modal2');
+    modal.style.display = "none"
+    modal.setAttribute('aria-hidden', true)
+    modal.removeAttribute('aria-modal')
+    target2.style.display = null
+    target2.removeAttribute('aria-hidden')
+    target2.setAttribute('aria-modal', true)
+    modal2 = target2
+    modal2.addEventListener('click', closeModal);
+    modal2.querySelector('.js-modal-close').addEventListener('click', closeModal);
+    modal2.querySelector('.js-stop').addEventListener('click', stopPropagation);
+}
+
+const stopPropagation = function (e) {
+    e.stopPropagation()
+}
+
+const closeModal = function (e) {
+    if (modal === null) return;
+    e.preventDefault();
+    modal.style.display = "none"
+    modal.setAttribute('aria-hidden', true)
+    modal.removeAttribute('aria-modal')
+    modal.removeEventListener('click', closeModal);
+    modal.querySelector('.js-modal-close').removeEventListener('click', closeModal);
+    modal.querySelector('.js-stop').removeEventListener('click', stopPropagation);
+    modal = null
+
 }
