@@ -242,6 +242,9 @@ function modalUploadPic() {
         fetch('http://localhost:5678/api/works', {
             method: 'POST',
             body: formData,
+            headers: {
+                "authorization": "bearer " + token
+            }
         })
             .then(response => {
                 if (!response.ok) {
@@ -273,14 +276,18 @@ const openModal = function (e) {
 }
 
 const openModalAjout = function () {
+    if (modal === null) return;
     const target2 = document.querySelector('#modal2');
-    modal.style.display = "none"
-    modal.setAttribute('aria-hidden', true)
-    modal.removeAttribute('aria-modal')
-    target2.style.display = null
-    target2.removeAttribute('aria-hidden')
-    target2.setAttribute('aria-modal', true)
-    modal2 = target2
+    modal.style.display = "none";
+    modal.setAttribute('aria-hidden', true);
+    modal.removeAttribute('aria-modal');
+    target2.style.display = null;
+    target2.removeAttribute('aria-hidden');
+    target2.setAttribute('aria-modal', true);
+    modal2 = target2;
+    modal.removeEventListener('click', closeModal);
+    modal.querySelector('.js-modal-close').removeEventListener('click', closeModal);
+    modal.querySelector('.js-stop').removeEventListener('click', stopPropagation);
     modal2.addEventListener('click', closeModal);
     modal2.querySelector('.js-modal-close').addEventListener('click', closeModal);
     modal2.querySelector('.js-stop').addEventListener('click', stopPropagation);
@@ -300,5 +307,12 @@ const closeModal = function (e) {
     modal.querySelector('.js-modal-close').removeEventListener('click', closeModal);
     modal.querySelector('.js-stop').removeEventListener('click', stopPropagation);
     modal = null
+    modal2.style.display = "none"
+    modal2.setAttribute('aria-hidden', true)
+    modal2.removeAttribute('aria-modal')
+    modal2.removeEventListener('click', closeModal);
+    modal2.querySelector('.js-modal-close').removeEventListener('click', closeModal);
+    modal2.querySelector('.js-stop').removeEventListener('click', stopPropagation);
+    modal2 = null
 
 }
