@@ -242,6 +242,7 @@ li a:hover {
 
 .gallery img {
 	width: 100%;
+	height: 490px;
 
 }
 
@@ -372,6 +373,7 @@ footer nav ul {
 }
 
 #passwordretrive {
+	margin-top: 30px;
 	display: flex;
 	justify-content: center;
 	color: black;
@@ -628,6 +630,9 @@ footer nav ul {
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .photoName {
@@ -706,4 +711,17 @@ margin: 0;
 
 .customWidth{
 	width: 70%;
+}
+
+#imagePreview{
+	width: 129px;
+	height: 193px;
+}
+
+.js-blueBox{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
 }
